@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import re
 
 from security.mitre import get_technique
+from security.advanced import detect_advanced
 
 PRIVILEGED = {"root", "administrator", "admin"}
 
@@ -15,7 +16,10 @@ def severity(score):
         return "MEDIUM"
     return "LOW"
 
-def analyze(events, threshold=5, window_minutes=10):
+def analyze(events, threshold=5, window_minutes=10,
+            privileged_accounts=None, trusted_admins=None):
+    privileged = set(PRIVILEGED if privileged_accounts is None else (u.lower() for u in privileged_accounts))
+    trusted = set(u.lower() for u in (trusted_admins or []))
     alerts = []
     failures = defaultdict(deque)
     source_failures = defaultdict(deque)
@@ -141,7 +145,7 @@ def analyze(events, threshold=5, window_minutes=10):
                 emit(event, "LIN007", "Account or group modification",
                      60, "T1098")
 
-        if user in PRIVILEGED and (failed or success):
+        if user in privileged and (failed or (success and user not in trusted)):
             emit(event, "AUTH001", "Privileged account authentication",
                  65 if failed else 40, "T1078", "low")
 
@@ -177,5 +181,7 @@ def analyze(events, threshold=5, window_minutes=10):
             emit(event, "AUTH004", "Successful login after repeated failures",
                  90, "T1078")
             account_queue.clear()
+
+    detect_advanced(events, emit, threshold, window_minutes)
 
     return sorted(alerts, key=lambda a: a["score"], reverse=True)

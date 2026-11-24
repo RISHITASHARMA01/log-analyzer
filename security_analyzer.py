@@ -1,4 +1,7 @@
 import argparse
+import json
+from pathlib import Path
+from security.linux_native import parse_auditd, parse_journal
 from security.parsers import parse_windows, parse_linux
 from security.engine import analyze
 from security.reporting import export_reports
@@ -17,9 +20,12 @@ def main():
     parser.add_argument("--output", default="reports")
 
     parser.add_argument("--db", default="security_alerts.db")
+    parser.add_argument("--auditd", nargs="+", default=[])
+    parser.add_argument("--journal", nargs="+", default=[])
+    parser.add_argument("--config", default=None)
     args = parser.parse_args()
 
-    if not args.windows and not args.linux:
+    if not any((args.windows, args.linux, args.auditd, args.journal)):
         parser.error("Provide Windows or Linux log files")
 
     if args.threshold < 2 or args.window < 1:
@@ -33,7 +39,24 @@ def main():
     for path in args.linux:
         events.extend(parse_linux(path, year=args.year))
 
-    alerts = analyze(events, args.threshold, args.window)
+    for path in args.auditd:
+        events.extend(parse_auditd(path))
+
+    for path in args.journal:
+        events.extend(parse_journal(path))
+
+    config = dict()
+
+    if args.config:
+        config = json.loads(Path(args.config).read_text())
+
+    alerts = analyze(
+        events,
+        args.threshold,
+        args.window,
+        privileged_accounts=config.get("privileged_accounts"),
+        trusted_admins=config.get("trusted_admins")
+    )
     result = export_reports(events, alerts, args.output)
     print("New alerts stored:", store_alerts(alerts, args.db))
 

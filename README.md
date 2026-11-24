@@ -163,3 +163,33 @@ compromise. Rules require environment-specific tuning and analyst
 validation. EVTX parsing requires validation against real event logs.
 
 The original Linux analyzer remains available for backward compatibility.
+
+### Advanced Security Detection
+
+- Linux auditd record ingestion
+- Systemd journal JSON-lines ingestion
+- Kerberoasting indicators (T1558.003)
+- AS-REP roasting indicators (T1558.004)
+- Kerberos pre-authentication failure monitoring
+- Service ticket request correlation
+- Configurable privileged account monitoring
+- Trusted administrator authentication filtering
+
+Analyze exported Linux audit logs:
+
+    python security_analyzer.py --auditd audit.log
+
+Analyze exported systemd journal logs:
+
+    python security_analyzer.py --journal journal.json
+
+Use a custom administrator configuration:
+
+    python security_analyzer.py \
+        --windows samples/windows_security.json \
+        --config config/security.json
+
+Kerberos indicators require appropriate Windows auditing.
+RC4 ticket usage and disabled pre-authentication are indicators,
+not proof of credential theft. Linux audit records are analyzed
+individually rather than reconstructed into complete audit sessions.

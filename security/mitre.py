@@ -20,3 +20,10 @@ def get_technique(technique_id):
         "reference": "https://attack.mitre.org/techniques/"
                      + technique_id.replace(".", "/") + "/"
     }
+
+
+TECHNIQUES.update(dict([
+    ("T1558.003", ("Kerberoasting", "Credential Access")),
+    ("T1558.004", ("AS-REP Roasting", "Credential Access")),
+    ("T1003.008", ("/etc/passwd and /etc/shadow", "Credential Access"))
+]))
