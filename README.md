@@ -96,3 +96,100 @@ whether the attempt succeeded, whether it happened in the middle of the night,
 and whether the source IP has triggered alerts before. The final score maps to
 a severity: `CRITICAL` (70+), `HIGH` (50+), `MEDIUM` (30+), `LOW` (below 30).
 Only `HIGH`/`CRITICAL` alerts trigger an email notification.
+
+---
+
+## Cross-Platform Security Analysis
+
+The upgraded security analysis engine supports Windows and Linux
+security telemetry with rule-based threat detection.
+
+### Features
+
+- Windows EVTX, XML, JSON and CSV ingestion
+- Linux authentication and syslog analysis
+- Privileged account activity monitoring
+- Suspicious permission change detection
+- Brute force and password spraying indicators
+- Successful authentication after repeated failures
+- MITRE ATT&CK technique mapping
+- Risk scoring and severity classification
+- Persistent SQLite alert storage and deduplication
+- JSON, CSV and HTML security reports
+- Interactive Streamlit security dashboard
+- Automated pytest tests and GitHub Actions CI
+
+### Architecture
+
+    Windows / Linux Logs
+            |
+      Log Normalization
+            |
+      Detection Engine
+            |
+      MITRE ATT&CK Mapping
+            |
+         Risk Scoring
+            |
+      SQLite Alert Storage
+            |
+      Reports and Dashboard
+
+### Installation
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements-dev.txt
+
+### Run Security Analysis
+
+    python security_analyzer.py \
+        --windows samples/windows_security.json \
+        --linux samples/linux_auth.log \
+        --year 2026
+
+### Launch Dashboard
+
+    streamlit run security_dashboard.py --server.address 127.0.0.1
+
+### Automated Testing
+
+    python -m pytest tests/ -v --cov=security
+
+### Limitations
+
+Detections represent security indicators rather than confirmed
+compromise. Rules require environment-specific tuning and analyst
+validation. EVTX parsing requires validation against real event logs.
+
+The original Linux analyzer remains available for backward compatibility.
+
+### Advanced Security Detection
+
+- Linux auditd record ingestion
+- Systemd journal JSON-lines ingestion
+- Kerberoasting indicators (T1558.003)
+- AS-REP roasting indicators (T1558.004)
+- Kerberos pre-authentication failure monitoring
+- Service ticket request correlation
+- Configurable privileged account monitoring
+- Trusted administrator authentication filtering
+
+Analyze exported Linux audit logs:
+
+    python security_analyzer.py --auditd audit.log
+
+Analyze exported systemd journal logs:
+
+    python security_analyzer.py --journal journal.json
+
+Use a custom administrator configuration:
+
+    python security_analyzer.py \
+        --windows samples/windows_security.json \
+        --config config/security.json
+
+Kerberos indicators require appropriate Windows auditing.
+RC4 ticket usage and disabled pre-authentication are indicators,
+not proof of credential theft. Linux audit records are analyzed
+individually rather than reconstructed into complete audit sessions.

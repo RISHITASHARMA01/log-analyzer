@@ -1,0 +1,86 @@
+[
+  {
+    "EventID": 4625,
+    "TimeCreated": "2026-11-24T11:00:00Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4625,
+    "TimeCreated": "2026-11-24T11:00:01Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4625,
+    "TimeCreated": "2026-11-24T11:00:02Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4625,
+    "TimeCreated": "2026-11-24T11:00:03Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4625,
+    "TimeCreated": "2026-11-24T11:00:04Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4624,
+    "TimeCreated": "2026-11-24T11:00:05Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4672,
+    "TimeCreated": "2026-11-24T11:00:06Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4648,
+    "TimeCreated": "2026-11-24T11:00:07Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4732,
+    "TimeCreated": "2026-11-24T11:00:08Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4670,
+    "TimeCreated": "2026-11-24T11:00:09Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 1102,
+    "TimeCreated": "2026-11-24T11:00:10Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  },
+  {
+    "EventID": 4740,
+    "TimeCreated": "2026-11-24T11:00:11Z",
+    "Computer": "WIN-LAB",
+    "TargetUserName": "Administrator",
+    "IpAddress": "198.51.100.20"
+  }
+]

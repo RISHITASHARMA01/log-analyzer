@@ -1,0 +1,9 @@
+{
+    "privileged_accounts": [
+        "root",
+        "administrator",
+        "admin",
+        "domainadmin"
+    ],
+    "trusted_admins": []
+}
