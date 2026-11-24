@@ -3,3 +3,11 @@ __pycache__/
 log_analyzer.db
 report.md
 .env
+
+.venv/
+__pycache__/
+.pytest_cache/
+.coverage
+reports/
+*.db
+.env

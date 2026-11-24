@@ -96,3 +96,70 @@ whether the attempt succeeded, whether it happened in the middle of the night,
 and whether the source IP has triggered alerts before. The final score maps to
 a severity: `CRITICAL` (70+), `HIGH` (50+), `MEDIUM` (30+), `LOW` (below 30).
 Only `HIGH`/`CRITICAL` alerts trigger an email notification.
+
+---
+
+## Cross-Platform Security Analysis
+
+The upgraded security analysis engine supports Windows and Linux
+security telemetry with rule-based threat detection.
+
+### Features
+
+- Windows EVTX, XML, JSON and CSV ingestion
+- Linux authentication and syslog analysis
+- Privileged account activity monitoring
+- Suspicious permission change detection
+- Brute force and password spraying indicators
+- Successful authentication after repeated failures
+- MITRE ATT&CK technique mapping
+- Risk scoring and severity classification
+- Persistent SQLite alert storage and deduplication
+- JSON, CSV and HTML security reports
+- Interactive Streamlit security dashboard
+- Automated pytest tests and GitHub Actions CI
+
+### Architecture
+
+    Windows / Linux Logs
+            |
+      Log Normalization
+            |
+      Detection Engine
+            |
+      MITRE ATT&CK Mapping
+            |
+         Risk Scoring
+            |
+      SQLite Alert Storage
+            |
+      Reports and Dashboard
+
+### Installation
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements-dev.txt
+
+### Run Security Analysis
+
+    python security_analyzer.py \
+        --windows samples/windows_security.json \
+        --linux samples/linux_auth.log \
+        --year 2026
+
+### Launch Dashboard
+
+    streamlit run security_dashboard.py --server.address 127.0.0.1
+
+### Automated Testing
+
+    python -m pytest tests/ -v --cov=security
+
+### Limitations
+
+Detections represent security indicators rather than confirmed
+compromise. Rules require environment-specific tuning and analyst
+validation. EVTX parsing requires validation against real event logs.
+
+The original Linux analyzer remains available for backward compatibility.

@@ -1,0 +1,10 @@
+Nov 24 10:00:00 ubuntu sshd[100]: Failed password for admin from 192.0.2.10 port 5001 ssh2
+Nov 24 10:00:10 ubuntu sshd[100]: Failed password for admin from 192.0.2.10 port 5002 ssh2
+Nov 24 10:00:20 ubuntu sshd[100]: Failed password for admin from 192.0.2.10 port 5003 ssh2
+Nov 24 10:00:30 ubuntu sshd[100]: Failed password for admin from 192.0.2.10 port 5004 ssh2
+Nov 24 10:00:40 ubuntu sshd[100]: Failed password for admin from 192.0.2.10 port 5005 ssh2
+Nov 24 10:01:00 ubuntu sshd[100]: Accepted password for admin from 192.0.2.10 port 5006 ssh2
+Nov 24 10:02:00 ubuntu sudo: intern : user NOT in sudoers
+Nov 24 10:03:00 ubuntu sudo: admin : USER=root ; COMMAND=/usr/bin/chmod 777 /etc/shadow
+Nov 24 10:04:00 ubuntu useradd[200]: new user: name=testuser, UID=1002
+Nov 24 10:05:00 ubuntu sshd[300]: Accepted publickey for employee from 192.0.2.20 port 5010 ssh2
